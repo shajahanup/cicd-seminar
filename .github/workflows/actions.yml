@@ -7,9 +7,9 @@ name: ci-cd-test
 #   BACKUP_FILE: /home/shajahan/simplogics/presentation/deployment/*
 
 on:
+
   pull_request:
     branches: [develop]
-
 
 # jobs:
 #   do_clone:
