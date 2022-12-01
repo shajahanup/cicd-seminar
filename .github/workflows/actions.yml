@@ -1,50 +1,50 @@
 name: ci-cd-test
 
-env:
-  BUILD_NAME: demo-0.0.1-SNAPSHOT.jar
-  DEPLOYMENT_PATH: /home/shajahan/simplogics/presentation/deployment/
-  BACKUP_PATH: /home/shajahan/simplogics/presentation/backup/
-  BACKUP_FILE: /home/shajahan/simplogics/presentation/deployment/*
+# env:
+#   BUILD_NAME: demo-0.0.1-SNAPSHOT.jar
+#   DEPLOYMENT_PATH: /home/shajahan/simplogics/presentation/deployment/
+#   BACKUP_PATH: /home/shajahan/simplogics/presentation/backup/
+#   BACKUP_FILE: /home/shajahan/simplogics/presentation/deployment/*
 
 on:
   push:
-    branches: [test_deploy]
+    branches: [develop]
 
 
 jobs:
-#   do_clone:
-#     runs-on: runner_1
-#     name: clone the code
-#     steps:
-#     - uses: actions/checkout@v3
-
-  run_test:
-    runs-on: runner_2
-    name: run_tests
+  do_clone:
+    runs-on: runner_1
+    name: clone the code
     steps:
     - uses: actions/checkout@v3
-    - run: mvn test
-  build:
-      name: build
-      runs-on: runner_2
-      needs: run_test
-      steps:
-      - run: pwd
-      - run: mvn clean package
 
-  backup:
-    name: backup
-    runs-on: runner_2
-    steps: 
-    - run: cp $BACKUP_FILE $BACKUP_PATH
+  # run_test:
+  #   runs-on: runner_2
+  #   name: run_tests
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - run: mvn test
+  # build:
+  #     name: build
+  #     runs-on: runner_2
+  #     needs: run_test
+  #     steps:
+  #     - run: pwd
+  #     - run: mvn clean package
+
+  # backup:
+  #   name: backup
+  #   runs-on: runner_2
+  #   steps: 
+  #   - run: cp $BACKUP_FILE $BACKUP_PATH
   
-  deploy:
-    name: deployment
-    runs-on: runner_2
-    needs: [build, backup]
-    steps:
-    - run: cp ./target/$BUILD_NAME $DEPLOYMENT_PATH
-    - run: sudo systemctl start cicdseminar.service
+  # deploy:
+  #   name: deployment
+  #   runs-on: runner_2
+  #   needs: [build, backup]
+  #   steps:
+  #   - run: cp ./target/$BUILD_NAME $DEPLOYMENT_PATH
+  #   - run: sudo systemctl start cicdseminar.service
   # fallback:
   #   name: fallback
   #   runs
