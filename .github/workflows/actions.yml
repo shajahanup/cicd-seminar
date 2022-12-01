@@ -8,7 +8,7 @@ env:
 
 on:
   push:
-    branches: [test_deploy]
+    branches: [test_deploy,ssds]
 
 
 jobs:
