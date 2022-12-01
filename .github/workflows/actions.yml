@@ -1,10 +1,8 @@
 name: ci-cd-test
 
-
 on:
   pull_request:
     branches: [develop]
-
 
 jobs:
   run_test:
