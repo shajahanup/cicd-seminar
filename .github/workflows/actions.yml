@@ -6,7 +6,7 @@ on:
 
 jobs:
   run_test:
-    runs-on: runner_2
+    runs-on: runner_1
     name: run_tests
     steps:
     - uses: actions/checkout@v3
