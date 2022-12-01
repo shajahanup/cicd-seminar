@@ -7,16 +7,16 @@ name: ci-cd-test
 #   BACKUP_FILE: /home/shajahan/simplogics/presentation/deployment/*
 
 on:
-  push:
+  pull-request:
     branches: [develop]
 
 
-jobs:
-  do_clone:
-    runs-on: runner_1
-    name: clone the code
-    steps:
-    - uses: actions/checkout@v3
+# jobs:
+#   do_clone:
+#     runs-on: runner_1
+#     name: clone the code
+#     steps:
+#     - uses: actions/checkout@v3
 
   # run_test:
   #   runs-on: runner_2
