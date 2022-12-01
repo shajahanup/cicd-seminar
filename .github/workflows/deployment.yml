@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [develop]
+    branches: [test_deploy]
 
 env:
   BUILD_FILE: demo-0.0.1-SNAPSHOT.jar
