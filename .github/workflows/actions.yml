@@ -7,8 +7,8 @@ env:
   BACKUP_FILE: /home/shajahan/simplogics/presentation/deployment/*
 
 on:
-  push:
-    branches: [test_deploy,ssds]
+  pull_request:
+    branches: [develop]
 
 
 jobs:
@@ -24,27 +24,27 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run: mvn test
-  build:
-      name: build
-      runs-on: runner_2
-      needs: run_test
-      steps:
-      - run: pwd
-      - run: mvn clean package
+  # build:
+  #     name: build
+  #     runs-on: runner_2
+  #     needs: run_test
+  #     steps:
+  #     - run: pwd
+  #     - run: mvn clean package
 
-  backup:
-    name: backup
-    runs-on: runner_2
-    steps: 
-    - run: cp $BACKUP_FILE $BACKUP_PATH
+  # backup:
+  #   name: backup
+  #   runs-on: runner_2
+  #   steps: 
+  #   - run: cp $BACKUP_FILE $BACKUP_PATH
   
-  deploy:
-    name: deployment
-    runs-on: runner_2
-    needs: [build, backup]
-    steps:
-    - run: cp ./target/$BUILD_NAME $DEPLOYMENT_PATH
-    - run: sudo systemctl start cicdseminar.service
+  # deploy:
+  #   name: deployment
+  #   runs-on: runner_2
+  #   needs: [build, backup]
+  #   steps:
+  #   - run: cp ./target/$BUILD_NAME $DEPLOYMENT_PATH
+  #   - run: sudo systemctl start cicdseminar.service
   # fallback:
   #   name: fallback
   #   runs
